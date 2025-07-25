@@ -1,50 +1,86 @@
-# Welcome to your Expo app 👋
+# TechHive - E-commerce App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+TechHive is a modern e-commerce mobile app built with Expo (React Native) that allows users to browse products, manage their cart, place orders, and more. The app is fully integrated with a backend API for authentication, product management, and order processing.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **User Authentication**
+  - Register a new account
+  - Login with email and password
+  - JWT-based authentication (token saved in secure storage)
+  - Logout functionality
+  - Persistent login across app restarts
 
+- **Product Browsing**
+  - View a list of all products fetched from the backend
+  - View detailed product information, including images, description, price, and specifications
+  - Product gallery with image zoom
+  - Search and filter products (extendable)
+
+- **Cart Management**
+  - Add products to cart from product detail or list
+  - View and update cart items and quantities
+  - Remove items from cart
+  - Cart state persists during session
+
+- **Checkout & Orders**
+  - Checkout flow with address and payment method (extendable)
+  - Place orders and view order confirmation
+  - Order history (extendable)
+
+- **Reviews**
+  - View customer reviews on product detail page
+  - Add reviews for purchased products (extendable)
+
+- **Navigation & UI**
+  - Tab-based navigation (Home, Cart, etc.)
+  - Custom header with logout button and cart icon
+  - Responsive and modern UI with Tailwind-like styling
+
+- **Backend Integration**
+  - All data (products, cart, orders, auth) is fetched from and synced with a RESTful backend API
+  - API endpoints for authentication, products, cart, orders, and reviews
+
+## Tech Stack
+
+- **Frontend:** React Native (Expo), TypeScript, Tailwind CSS (via NativeWind), Expo Router
+- **Backend:** RESTful API (Django/DRF or similar, not included in this repo)
+- **State Management:** React Context API for Auth and Cart
+- **Storage:** AsyncStorage for JWT token persistence
+
+## Getting Started
+
+1. **Install dependencies**
    ```bash
    npm install
    ```
-
-2. Start the app
-
+2. **Start the app**
    ```bash
    npx expo start
    ```
+3. **Configure Backend URL**
+   - Update the `BASE_URL` in `lib/api.ts` to point to your backend server (use your local IP for device testing).
 
-In the output, you'll find options to open the app in a
+## Project Structure
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- `app/` - Main app screens and navigation
+- `components/` - Reusable UI components (Button, Input, ProductCard, etc.)
+- `lib/api.ts` - API utility for backend communication
+- `constants/` - App-wide constants (colors, etc.)
+- `context/` - Auth and Cart context providers
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Backend API Endpoints
 
-## Get a fresh project
+- **Authentication:** `/auth/register/`, `/auth/token/`, `/auth/logout/`
+- **Products:** `/products/products/`, `/products/products/{id}/`
+- **Cart:** `/cart/`, `/cart/add_items/`, `/cart/remove_items/`
+- **Orders:** `/orders/`, `/orders/checkout/`
+- **Reviews:** `/reviews/`, `/reviews/products/{product_id}/reviews/`
 
-When you're ready, run:
+## Customization & Extending
+- Add more screens (profile, order history, etc.)
+- Extend cart and checkout logic as needed
+- Add push notifications, analytics, etc.
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## License
+MIT
